@@ -1,11 +1,13 @@
 # if venv does not exist
 if [ ! -d "venv" ]; then
-    source setup_venv
+    source scripts/setup_venv
 fi
 
 source venv/bin/activate
+
 PATH=$PATH:$(pwd)
+PATH=$PATH:$(pwd)/scripts
 
 chmod u+x bot
-chmod u+x start
-chmod u+x register_keys
+chmod u+x scripts/start
+chmod u+x scripts/register_keys

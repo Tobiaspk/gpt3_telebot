@@ -39,6 +39,12 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS messages (
 def send_welcome(message):
     bot.reply_to(message, "Hello! This is a GPT-3 bot. Send me a prompt and I will try to generate a response using the GPT-3 API.")
 
+# add a handler that shows all available prompts
+@bot.message_handler(commands=["help"])
+def send_help(message):
+    response = "Available commands: /" + ", /".join(prompts.keys())
+    bot.reply_to(message, response)
+
 for prompt in prompts:
     @bot.message_handler(commands=[prompt])
     def send_prompt(message):

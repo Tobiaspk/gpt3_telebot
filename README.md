@@ -3,19 +3,36 @@ Telegram Bot using GPT3 and enhanced functions
 
 # Setup
 
-## Setup python
+Hey there! If you're just getting started with this bot, don't worry - we've got you covered! Just follow the steps below and you'll be up and running in no time!
 
-Create a virtual environment with all required packages. Depends on an executable `python3`.
+1. Setup Python environment, path and executables with `source activate_bot`
+2. Setup keys with `register_keys`
+3. Start bot with `start`
 
-```source setup_venv```
+If you've setup the keys already, just leave out 2. and you're good to go. Below are just some more blabla instructions.
 
-## Setup scripts
-
-Register scripts, tools to generate insights and starting of the server
+## Activate Bot
 
 ```source activate_bot```
 
+## Setup python
+
+Create a virtual environment with all required packages. Depends on an executable `python3`. The setup happens as part of the bot activation.
+
+## Setup keys
+
+You'll need the following keys
+
+* [OpenAI API Key](https://beta.openai.com/account/api-keys)
+* BotFather API key
+
+Register your keys using
+
+```register_keys```
+
 ## Start server
+
+This will start polling messages.
 
 ```start```
 

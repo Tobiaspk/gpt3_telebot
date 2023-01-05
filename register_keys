@@ -1,0 +1,9 @@
+file=.keys.yml
+
+echo "Input your OpenAI API key:"
+read -r OPENAI_API_KEY
+echo "openai: $OPENAI_API_KEY" > $file
+
+echo "Input your Bot API key:"
+read -r BOT_API_KEY
+echo "telegram: $BOT_API_KEY" > $file

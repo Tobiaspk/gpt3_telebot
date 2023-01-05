@@ -49,7 +49,7 @@ for prompt in prompts:
     @bot.message_handler(commands=[prompt])
     def send_prompt(message):
         pre = prompts[prompt]
-        message.text = pre + message.text.replace("/" + prompt + " ", "")
+        message.text = pre + message.text.replace("/" + prompt + " ", "") + "\n\n"
         run_gpt3(message)
 
 @bot.message_handler(regexp="^/.*")

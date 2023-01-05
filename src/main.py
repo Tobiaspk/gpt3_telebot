@@ -1,8 +1,9 @@
+from copy import copy 
 import datetime
 import yaml
 import openai
-import telebot
 import sqlite3
+import telebot
 
 # read the keys from .keys.yml
 with open(".keys.yml", "r") as f:
@@ -45,17 +46,16 @@ def send_help(message):
     response = "Available commands: /" + ", /".join(prompts.keys())
     bot.reply_to(message, response)
 
-for prompt in prompts:
-    @bot.message_handler(commands=[prompt])
-    def send_prompt(message):
-        pre = prompts[prompt]
-        message.text = pre + message.text.replace("/" + prompt + " ", "") + "\n\n"
-        run_gpt3(message)
-
 @bot.message_handler(regexp="^/.*")
 def send_unknown(message):
-    response = "The command is not known"
-    bot.reply_to(message, response)
+    command = message.text.split(" ")[0].replace("/", "")
+    if command in prompts.keys():
+        print("Running prompt: " + command)
+        message.text = prompts[command] + message.text.replace("/" + command + " ", "") + "\n\n"
+        run_gpt3(message)
+    else:
+        response = "The command is not known"
+        bot.reply_to(message, response)
 
 @bot.message_handler(func=lambda message: True)
 def echo_message(message):

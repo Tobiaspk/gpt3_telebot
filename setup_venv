@@ -1,0 +1,6 @@
+python3 -m pip install --user --upgrade pip
+python3 -m pip install --user virtualenv
+python3 -m virtualenv venv
+source venv/bin/activate
+# used python version is now called "python" only
+python -m pip install -r requirements.txt

@@ -1,0 +1,2 @@
+echo "Starting the server"
+python src/main.py

@@ -1,0 +1,6 @@
+.keys.yml
+db/archive/*
+db/messages.db
+__pycache__/
+logs/*
+venv/

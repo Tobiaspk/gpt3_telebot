@@ -1,0 +1,4 @@
+source venv/bin/activate
+PATH=$PATH:$(pwd)
+chmod u+x bot
+chmod u+x start

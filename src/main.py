@@ -21,6 +21,9 @@ bot = telebot.TeleBot(keys["telegram"])
 conn = sqlite3.connect("db/messages.db", check_same_thread=False)
 cursor = conn.cursor()
 
+with open("src/prompts.yml", "r") as f:
+    prompts = yaml.safe_load(f)
+
 # Create the table if it doesn't exist
 cursor.execute("""CREATE TABLE IF NOT EXISTS messages (
                     user_id INTEGER,
@@ -36,37 +39,13 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS messages (
 def send_welcome(message):
     bot.reply_to(message, "Hello! This is a GPT-3 bot. Send me a prompt and I will try to generate a response using the GPT-3 API.")
 
-@bot.message_handler(commands=["scientific"])
-def send_scientific(message):
-    pre = "Rewrite the following sentence, declutter and articulate with professional and scientific expressions: "
-    message.text = pre + message.text.replace("/scientific ", "")
-    run_gpt3(message)
+for prompt in prompts:
+    @bot.message_handler(commands=[prompt])
+    def send_prompt(message):
+        pre = prompts[prompt]
+        message.text = pre + message.text.replace("/" + prompt + " ", "")
+        run_gpt3(message)
 
-@bot.message_handler(commands=["professional"])
-def send_scientific(message):
-    pre = "Rewrite the following sentenceto an overly correct, business appropriate, inclusive statement: "
-    message.text = pre + message.text.replace("/scientific ", "")
-    run_gpt3(message)
-
-@bot.message_handler(commands=["mail"])
-def send_scientific(message):
-    pre = "Write a friendly and professional mail out of the following keywords: "
-    message.text = pre + message.text.replace("/mail ", "")
-    run_gpt3(message)
-
-@bot.message_handler(commands=["mail_homies"])
-def send_scientific(message):
-    pre = "Write a very personal mail to my homies and make fun of them, use the following keywords: "
-    message.text = pre + message.text.replace("/mail ", "")
-    run_gpt3(message)
-
-@bot.message_handler(commands=["send_gaudi_message"])
-def send_scientific(message):
-    pre = "Insult my homies using the following keywords and be really inappropriate but still funny: "
-    message.text = pre + message.text.replace("/mail ", "")
-    run_gpt3(message)
-
-# filter all unknown commands starting with / using a regular expressions
 @bot.message_handler(regexp="^/.*")
 def send_unknown(message):
     response = "The command is not known"

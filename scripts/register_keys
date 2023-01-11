@@ -6,4 +6,4 @@ echo "openai: $OPENAI_API_KEY" > $file
 
 echo "Input your Bot API key:"
 read -r BOT_API_KEY
-echo "telegram: $BOT_API_KEY" > $file
+echo "telegram: $BOT_API_KEY" >> $file

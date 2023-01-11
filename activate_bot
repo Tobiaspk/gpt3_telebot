@@ -1,13 +1,24 @@
-# if venv does not exist
-if [ ! -d "venv" ]; then
-    source scripts/setup_venv
-fi
-
-source venv/bin/activate
-
+# Set paths
 PATH=$PATH:$(pwd)
 PATH=$PATH:$(pwd)/scripts
 
 chmod u+x bot
 chmod u+x scripts/start
 chmod u+x scripts/register_keys
+chmod u+x scripts/setup_venv
+
+
+# Set keys if not exists
+if [ ! -f ".keys.yml" ]; then
+    register_keys
+fi
+
+# Create virtual environment if not exists
+if [ ! -d "venv" ]; then
+    setup_venv
+fi
+
+# Activate environment
+source venv/bin/activate
+
+echo "Setup complete. Run 'start' to start session."

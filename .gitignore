@@ -1,6 +1,7 @@
 .keys.yml
 db/archive/*
 db/messages.db
+db/chat.db
 __pycache__/
 logs/*
 venv/

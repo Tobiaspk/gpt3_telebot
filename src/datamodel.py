@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, TIMESTAMP
+from sqlalchemy import Column, Integer, String, ForeignKey, TIMESTAMP, DateTime
 from sqlalchemy.orm import declarative_base
+from sqlalchemy.sql import func
 
 Base = declarative_base()
 
@@ -8,6 +9,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String)
     current_conversation_id = Column(Integer, default=-1)
+    timestamp = Column(DateTime(timezone=True), server_default=func.now())
 
 class Message(Base):
     __tablename__ = 'messages'
@@ -15,18 +17,19 @@ class Message(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     chat_id = Column(Integer)
     conversation_id = Column(Integer, ForeignKey('conversations.id'))
-    timestamp = Column(TIMESTAMP)
+    timestamp = Column(DateTime(timezone=True), server_default=func.now())
     message = Column(String)
 
 class Response(Base):
     __tablename__ = 'responses'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    generator_id = Column(Integer)
     message_id = Column(Integer, ForeignKey('messages.id'))
-    timestamp = Column(TIMESTAMP)
+    conversation_id = Column(Integer, ForeignKey('conversations.id'))
+    timestamp = Column(DateTime(timezone=True), server_default=func.now())
     message = Column(String)
 
 class Conversation(Base):
     __tablename__ = 'conversations'
     id = Column(Integer, primary_key=True, autoincrement=True)
+    timestamp = Column(DateTime(timezone=True), server_default=func.now())
 

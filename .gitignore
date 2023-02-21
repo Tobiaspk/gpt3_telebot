@@ -8,4 +8,5 @@ venv/
 
 .DS_Store
 _build
+db/
 

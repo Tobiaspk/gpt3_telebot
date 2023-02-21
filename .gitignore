@@ -5,3 +5,7 @@ db/chat.db
 __pycache__/
 logs/*
 venv/
+
+.DS_Store
+_build
+

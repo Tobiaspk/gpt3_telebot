@@ -1,5 +1,6 @@
 # gpt3_telebot
-Telegram Bot using GPT3 and enhanced functions
+
+Find more docs on (ReadTheDocs)[https://gpt3-telebot.readthedocs.io/en/latest/]
 
 # Setup
 
@@ -32,10 +33,6 @@ A: You are the person asking this question.
 I like to use this function for answer programming questions and tasks. No need to reintroduce the entire concept everytime. It works quite similar to chatGPT in this regard. However, this is not tested on long chats, in which case higher costs and lower performance may be the consequence.
 
 I hope that sloppy implementation of the conversation function is to everyones liking :) 
-
-## Activate Bot
-
-```source activate_bot```
 
 ## Setup python
 

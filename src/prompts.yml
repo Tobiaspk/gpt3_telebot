@@ -9,3 +9,4 @@ mail_homies: "Write a very personal mail to my homies and make fun of them, use 
 send_gaudi_message: "Insult my homies using the following keywords and be really inappropriate but still funny: "
 alts: "Write the following same sentence in three different ways: "
 funny_nice: "Rewrite the following sentence to a funny, friendly, sarcastic, or ironic statement: "
+doc_python: "The following code is written in Python. I want to write a documentation for this code using sphinx. Write a documentation for the following function that describes what it does, describes the parameters and can be parsed by sphinx."

@@ -27,6 +27,9 @@ model_engine = "text-davinci-003"
 # Set up the Telegram bot
 bot = telebot.TeleBot(keys["telegram"])
 
+with open("src/prompts.yml", "r") as f:
+    prompts = yaml.safe_load(f)
+
 # Connect to the database
 if DEV:
     engine = create_engine('sqlite:///db/chat_dev.db')
@@ -38,9 +41,6 @@ else:
 
 Session = sessionmaker(bind=engine)
 session = Session()
-
-with open("src/prompts.yml", "r") as f:
-    prompts = yaml.safe_load(f)
 
 def send_message(message, response, user):
     logging.debug("TELEBOT: Sending message")

@@ -1,3 +1,10 @@
+if ! command -v pip3 &> /dev/null
+then
+    echo "pip3 could not be found"
+    echo "installing pip3"
+    sudo apt install python3-pip
+fi
+
 python3 -m pip install --user --upgrade pip
 python3 -m pip install --user virtualenv
 python3 -m virtualenv venv

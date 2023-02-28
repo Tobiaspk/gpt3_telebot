@@ -1,5 +1,3 @@
-set -eou pipefail
-
 # Set paths
 PATH=$PATH:$(pwd)
 PATH=$PATH:$(pwd)/scripts

@@ -1,6 +1,6 @@
 # gpt3_telebot
 
-Find more docs on (ReadTheDocs)[https://gpt3-telebot.readthedocs.io/en/latest/]
+Find more docs on [ReadTheDocs](https://gpt3-telebot.readthedocs.io/en/latest/)
 
 # Setup
 

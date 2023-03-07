@@ -1,3 +1,4 @@
+import os
 from copy import copy 
 import datetime
 import yaml
@@ -14,18 +15,29 @@ import gpt_functions as gf
 logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=logging.DEBUG)
 DEV = False
 
-# read the keys from .keys.yml
-with open(".keys.yml", "r") as f:
-    keys = yaml.safe_load(f)
+
+keys_required = ["TELEGRAM_API_KEY", "OPENAI_API_KEY"]
+
+if os.path.isfile(".keys.yml"):
+    with open(".keys.yml", "r") as f:
+        keys = yaml.safe_load(f)
+else:
+    keys = {
+        k: os.environ.get(k) for k in keys_required
+    }
+
+for k in keys_required:
+    if k not in keys.keys() or keys[k] is None:
+        raise ValueError(f"Key '{k}' is missing from the .keys.yml file or the environment variables.")
 
 # Set up the OpenAI API client
-openai.api_key = keys["openai"]
+openai.api_key = keys["OPENAI_API_KEY"]
 
 # Set the model to use
 model_engine = "text-davinci-003"
 
 # Set up the Telegram bot
-bot = telebot.TeleBot(keys["telegram"])
+bot = telebot.TeleBot(keys["TELEGRAM_API_KEY"])
 
 with open("src/prompts.yml", "r") as f:
     prompts = yaml.safe_load(f)

@@ -1,0 +1,4 @@
+echo "Activating virtual environment"
+source scripts/activate_bot
+echo "Starting the server"
+python src/main.py

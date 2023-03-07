@@ -3,14 +3,15 @@ PATH=$PATH:$(pwd)
 PATH=$PATH:$(pwd)/scripts
 
 chmod u+x bot
-chmod u+x scripts/start
+chmod u+x start
 chmod u+x scripts/register_keys
 chmod u+x scripts/setup_venv
 
 
-# Set keys if not exists
-if [ ! -f ".keys.yml" ]; then
-    register_keys
+# Set keys if not exists and if not defined in environment
+if [ ! -f ".keys.yml" ] && [ -z "$TELEGRAM_API_KEY" ] && [ -z "$OPENAI_API_KEY" ]; then
+    echo "No keys found. Register keys using 'register_keys' command or set environment variables."
+    exit 1
 fi
 
 # Create virtual environment if not exists

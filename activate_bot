@@ -18,6 +18,11 @@ if [ ! -d "venv" ]; then
     setup_venv
 fi
 
+# Create folder db if it does not exist
+if [ ! -d "db" ]; then
+    mkdir db
+fi
+
 # Activate environment
 source venv/bin/activate
 

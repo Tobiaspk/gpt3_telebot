@@ -40,13 +40,3 @@ This can be easily done by running the following command and following the instr
 ```zsh
 source start
 ```
-
-Done.
-
-## Start the bot
-
-After the setup is complete, you can start the bot by running the following command:
-
-```zsh
-start
-```

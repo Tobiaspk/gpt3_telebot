@@ -16,21 +16,32 @@ git clone https://github.com/Tobiaspk/gpt3_telebot.git
 cd gpt3_telebot
 ```
 
-## Setup the bot
+## Setup the bot on Railway
+
+The command `/conv_prompt` allows you to directly jump into a topic. For example, if you have some questions about the terminal, you can simply send the following message to the bot:
+
+```
+/conv_prompt terminal
+```
+
+The bot will then start a conversation about the terminal, no need to set the context. You can end the conversation by sending the `/conv_end` command.
+
+
+## Setup the bot locally
 
 After cloning the repository you need:
 
-* Store the API keys
+* Store the API keys in `.keys.yml` or in the environment
 * Install the dependencies
 * Run the bot
 
 This can be easily done by running the following command and following the instructions:
 
 ```zsh
-source activate_bot
+source start
 ```
 
-This will ask you for the two api keys and install all required dependencies.
+Done.
 
 ## Start the bot
 

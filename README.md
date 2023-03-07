@@ -1,14 +1,12 @@
-# gpt3_telebot
+# GPT3 Telebot
+
+Make your life easier by letting a bot do the work for you.
 
 Find more docs on [ReadTheDocs](https://gpt3-telebot.readthedocs.io/en/latest/)
 
-# Setup
-
-Hey there! If you're just getting started with this bot, don't worry - we've got you covered! Just follow the steps below and you'll be up and running in no time! All you need is a Telegram API key and an OpenAI GPT3 Key.
-
 ## Hosted in 2 minutes
 
-... or 5 minutes if you never used Railway.
+... or 5 minutes if this is your first time using Railway.
 
 1. Simply connect this repo (or a fork) with railway.app. 
 2. Set the variables `OPENAI_API_KEY` and `TELEGRAM_API_KEY` 
@@ -26,7 +24,7 @@ Clone the repo and run the following command.
 source start
 ```
 
-Done, you're set.
+Set the `.keys.yml`. Done, you're set.
 
 # Functions
 

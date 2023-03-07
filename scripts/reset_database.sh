@@ -1,7 +1,5 @@
-# copy messages.db to archive/messages_timestampe.db
+# archie and rm messages
 cp db/messages.db db/archive/messages_$(date +%s).db
-
-# delete messages.db
 rm db/messages.db
 
 # log whats been done into a log file and console

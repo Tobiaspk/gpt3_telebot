@@ -6,7 +6,6 @@ def get_user(session, user_id):
     user = session.query(User).filter_by(id=user_id).first()
     if not user:
         logging.debug("DM FUNCTIONS: User with id %s not found" % user_id)
-        assert ValueError("User with id %s not found" % user_id)
     return user
 
 def start_conversation(session, user):
@@ -35,12 +34,15 @@ def end_conversation(session, user):
 def get_conversation(session, user, new_message, message_prefix="Q: ", response_prefix="A: "):
     logging.debug("DM FUNCTIONS: Getting conversation for user %s", user.id)
     conversation_id = user.current_conversation_id
+    if conversation_id == -1:
+        return ""
 
     messages = session.query(Message).filter_by(conversation_id=conversation_id).all()
     responses = session.query(Response).filter_by(conversation_id=conversation_id).all()
 
-    m = [dict(message=message_prefix + message.message, timestamp=message.timestamp) for message in messages]
-    r = [dict(message=response_prefix + response.message, timestamp=response.timestamp) for response in responses]
+    # remove last element, which is "/conv_show" typically
+    m = [dict(message=message_prefix + message.message, timestamp=message.timestamp) for message in messages][:-1]
+    r = [dict(message=response_prefix + response.message, timestamp=response.timestamp) for response in responses][:-1]
 
     conversation_list = m + r
     conversation_list.sort(key=lambda x: x['timestamp'])

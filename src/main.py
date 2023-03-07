@@ -17,7 +17,7 @@ import gpt_functions as gf
 logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=logging.DEBUG)
 DEV = False
 
-
+# Require keys
 keys_required = ["TELEGRAM_API_KEY", "OPENAI_API_KEY"]
 
 if os.path.isfile(".keys.yml"):

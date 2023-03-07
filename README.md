@@ -4,12 +4,41 @@ Find more docs on [ReadTheDocs](https://gpt3-telebot.readthedocs.io/en/latest/)
 
 # Setup
 
-Hey there! If you're just getting started with this bot, don't worry - we've got you covered! Just follow the steps below and you'll be up and running in no time!
+Hey there! If you're just getting started with this bot, don't worry - we've got you covered! Just follow the steps below and you'll be up and running in no time! All you need is a Telegram API key and an OpenAI GPT3 Key.
 
-1. Setup Python environment, path and executables with `source activate_bot`
-2. Start bot with `start`
+## Hosted in 2 minutes
 
-'activate_bot' automatically recognises if keys are registered and if not, will prompt to register.
+... or 5 minutes if you never used Railway.
+
+1. Simply connect this repo (or a fork) with railway.app. 
+2. Set the variables `OPENAI_API_KEY` and `TELEGRAM_API_KEY` 
+3. Set as start command `source start`
+
+Done. The bot should be available in a minute.
+
+*Note: The database is not persistent with this solution.*
+
+## Locally
+
+Clone the repo and run the following command.
+
+```
+source start
+```
+
+Done, you're set.
+
+# Functions
+
+## Topics
+
+The command `/conv_prompt` allows you to directly jump into a topic. For example, if you have some questions about the terminal, you can simply send the following message to the bot:
+
+```
+/conv_prompt terminal
+```
+
+The bot will then start a conversation about the terminal, no need to set the context. You can end the conversation by sending the `/conv_end` command.
 
 ## Conversations
 

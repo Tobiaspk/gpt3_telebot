@@ -129,7 +129,7 @@ def conversation_show(message):
             summary = f"Prompt: {prompt}\nQuery: {conv.get('query', '')}\n" \
                       f"No. of messages: {conv.get('number_of_messages', 0)}\n\n" \
                       f"Conversation:\n{conversation}"
-            bot.reply_to(summary, conversation)
+            bot.reply_to(message, summary)
         else:
             bot.reply_to(message, conversation)
 

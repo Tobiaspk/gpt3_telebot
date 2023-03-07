@@ -1,0 +1,9 @@
+conv_start - Start a conversation
+conv_end - End a conversation
+conv_prompt - Start a new conversation using a prompt about a topic.
+scientific - Rewrite using scientific lingo
+professional - Rewrite using business lingo
+funny - Rewrite trying to be funny
+send_gaudi_message - Inappropriately insult your friends
+doc_python - Write a docstring for a given Python code
+alts - Write the same sentence in different ways

@@ -32,4 +32,6 @@ class Conversation(Base):
     __tablename__ = 'conversations'
     id = Column(Integer, primary_key=True, autoincrement=True)
     timestamp = Column(DateTime(timezone=True), server_default=func.now())
+    prompt = Column(String)
+    query = Column(String)
 

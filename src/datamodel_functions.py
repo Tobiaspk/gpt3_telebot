@@ -8,13 +8,15 @@ def get_user(session, user_id):
         logging.debug("DM FUNCTIONS: User with id %s not found" % user_id)
     return user
 
-def start_conversation(session, user):
+def start_conversation(session, user, prompt, query):
     """
     Starts a conversation for a user.
     param user: User object
     """
     logging.debug("DM FUNCTIONS: Starting conversation for user %s", user.id)
     new_conversation = Conversation()
+    new_conversation.prompt = prompt
+    new_conversation.query = query
     session.add(new_conversation)
     session.commit()
     user.current_conversation_id = new_conversation.id
@@ -37,19 +39,33 @@ def get_conversation(session, user, new_message, message_prefix="Q: ", response_
     if conversation_id == -1:
         return ""
 
+    conv = session.query(Conversation).filter_by(id=conversation_id).first()
+    prompt = conv.prompt
+    query = conv.query
     messages = session.query(Message).filter_by(conversation_id=conversation_id).all()
     responses = session.query(Response).filter_by(conversation_id=conversation_id).all()
 
     # remove last element, which is "/conv_show" typically
-    m = [dict(message=message_prefix + message.message, timestamp=message.timestamp) for message in messages][:-1]
-    r = [dict(message=response_prefix + response.message, timestamp=response.timestamp) for response in responses][:-1]
+    m = [dict(message=message_prefix + message.message, timestamp=message.timestamp) for message in messages]
+    r = [dict(message=response_prefix + response.message, timestamp=response.timestamp) for response in responses]
 
     conversation_list = m + r
     conversation_list.sort(key=lambda x: x['timestamp'])
     conversation = "\n\n".join([i["message"] for i in conversation_list])
-    conversation = conversation + "\n\nQ: " + new_message + "\n\nA: "
+    new_prompt = f"{message_prefix}" + new_message + f"\n\n{response_prefix}"
+    conversation_all = f"{query}\n\n{conversation}\n\n{new_prompt}"
 
-    return conversation
+    conv = dict(
+        conversation_all=conversation_all,
+        conversation=conversation,
+        new_prompt=new_prompt,
+        prompt=prompt,
+        query=query,
+        conversation_start=conv.timestamp,
+        number_of_messages=len(messages),
+    )
+
+    return conv
 
 def store_message(session, user, chat_id, message):
     """

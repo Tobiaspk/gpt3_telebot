@@ -6,11 +6,23 @@ I often know what I want to say, but it is difficult to find the right words. Th
 
 ## Easy to use
 
-Once the bot is setup, you can start it by running the following command:
+Clone the repo and start the bot using
 
 ```zsh
-start
+source start
 ```
+
+It will prompt you for your API key and then start the bot. You can then send messages to the bot using the Telegram app.
+
+## Jump into a topic
+
+The command `/conv_prompt` allows you to directly jump into a topic. For example, if you have some questions about the terminal, you can simply send the following message to the bot:
+
+```
+/conv_prompt terminal
+```
+
+The bot will then start a conversation about the terminal, no need to set the context. You can end the conversation by sending the `/conv_end` command.
 
 ## Make your text sound better
 
@@ -34,7 +46,7 @@ This bot is an amazing tool for improving the quality of your sentences.
 
 You can add more prompts by simply adding them to the `src/prompts.yml` file. The bot will then use these prompts to rewrite your text - no restart required.
 
-## Make Conversations
+## Make Conversations without prompts
 
 You can also make conversations with the bot. Simply send a message using the `/conv_start` which will enter a chatGPT like conversation. The bot will use previous messages to generate the next message in a conversation. A conversation can be ended by sending the `/conv_end` command.
 

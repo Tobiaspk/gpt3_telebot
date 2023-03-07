@@ -27,4 +27,4 @@ fi
 # Activate environment
 source venv/bin/activate
 
-echo "Setup complete. Run 'start' to start session."
+echo "Setup complete. Starting server."

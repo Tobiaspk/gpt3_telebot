@@ -59,6 +59,7 @@ else:
 
 Session = sessionmaker(bind=engine)
 session = Session()
+db.init_db(session)
 
 def send_message(message, response, user):
     logging.debug("TELEBOT: Sending message")

@@ -1,6 +1,7 @@
 import os
 import logging
 from sqlalchemy import create_engine
+from datamodel import Conversation
 
 required_env_vars = [
     "DATABASE_URL",
@@ -23,3 +24,14 @@ def get_engine():
     else:
         url = f"postgresql://{os.environ['PGUSER']}:{os.environ['PGPASSWORD']}@{os.environ['PGHOST']}:{os.environ['PGPORT']}/{os.environ['PGDATABASE']}"
         return create_engine(url)
+    
+    # check if conversation with id -1 exists
+    # if not, create it
+
+def init_db(session):
+    conv = session.query(Conversation).filter_by(id=-1).first()
+    if conv is None:
+        conv = Conversation(id=id)
+        session.add(conv)
+        session.commit()
+    return conv

@@ -1,4 +1,5 @@
-terminal: I have questions about how to use the terminal. Answer my questions precisely, short and to the point.
-python: I have questions about how to use the python. Answer my questions precisely, short and to the point.
-R: I have questions about how to use R. Answer my questions precisely, short and to the point.
-bioinformatics: I have questions about bioinformatics. Answer my questions precisely, short and to the point.
+terminal: I have questions about how to use the terminal. Answer my questions precisely, short and to the point. If useful, return code snippets.
+python: I have questions about how to use the python. Answer my questions precisely, short and to the point. If useful, return code snippets.
+R: I have questions about how to use R. Answer my questions precisely, short and to the point. If useful, return code snippets.
+Javascript: I have questions about how to use Javascript. Answer my questions precisely, short and to the point. If useful, return code snippets.
+bioinformatics: I have questions about bioinformatics. Answer my questions precisely, short and to the point. If useful, return code snippets.

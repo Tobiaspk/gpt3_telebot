@@ -8,7 +8,7 @@ class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     username = Column(String)
-    current_conversation_id = Column(Integer, default=None, null=True)
+    current_conversation_id = Column(Integer, default=None, nullable=True)
     timestamp = Column(DateTime(timezone=True), server_default=func.now())
 
 class Message(Base):
@@ -16,7 +16,7 @@ class Message(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey('users.id'))
     chat_id = Column(Integer)
-    conversation_id = Column(Integer, ForeignKey('conversations.id'), null=True)
+    conversation_id = Column(Integer, ForeignKey('conversations.id'), nullable=True)
     timestamp = Column(DateTime(timezone=True), server_default=func.now())
     message = Column(String)
 
@@ -24,7 +24,7 @@ class Response(Base):
     __tablename__ = 'responses'
     id = Column(Integer, primary_key=True, autoincrement=True)
     message_id = Column(Integer, ForeignKey('messages.id'))
-    conversation_id = Column(Integer, ForeignKey('conversations.id'), null=True)
+    conversation_id = Column(Integer, ForeignKey('conversations.id'), nullable=True)
     timestamp = Column(DateTime(timezone=True), server_default=func.now())
     message = Column(String)
 

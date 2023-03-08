@@ -1,4 +1,5 @@
 import os
+import sys
 from copy import copy 
 import datetime
 import yaml
@@ -16,7 +17,11 @@ import datamodel_functions as df
 import gpt_functions as gf
 
 logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=logging.DEBUG)
+
+# set DEV to true if first argument is dev
 DEV = False
+if len(sys.argv) > 1 and sys.argv[1] == "dev":
+    DEV = True
 
 # Require keys
 keys_required = ["TELEGRAM_API_KEY", "OPENAI_API_KEY"]
@@ -59,7 +64,6 @@ else:
 
 Session = sessionmaker(bind=engine)
 session = Session()
-db.init_db(session)
 
 def send_message(message, response, user):
     logging.debug("TELEBOT: Sending message")
@@ -139,7 +143,7 @@ def conversation_show(message):
 def send_command(message):
     logging.debug("TELEBOT: Sending command")
     user = check_user(message)
-    if user.current_conversation_id > -1:
+    if user.current_conversation_id is not None:
         bot.reply_to(message, "Conversation is active. Please /conv_end first before using commands.")
     
     command = message.text.split(" ")[0].replace("/", "")
@@ -155,7 +159,7 @@ def send_command(message):
 def echo_message(message):
     logging.debug("TELEBOT: Handling all other messages")
     user = check_user(message)
-    if user.current_conversation_id != -1:
+    if user.current_conversation_id is not None:
         logging.debug("TELEBOT: Conversation is active")
         conv =df.get_conversation(session, new_message=message.text, user=user)
         entire_message = conv.get("conversation_all", "")

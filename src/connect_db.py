@@ -1,7 +1,6 @@
 import os
 import logging
 from sqlalchemy import create_engine
-from sqlalchemy.engine.url import URL
 
 required_env_vars = [
     "DATABASE_URL",
@@ -22,12 +21,5 @@ def get_engine():
     if any_missing:
         return create_engine('sqlite:///db/chat.db')
     else:
-        url = URL(
-            drivername="postgresql",
-            username=os.environ["PGUSER"],
-            password=os.environ["PGPASSWORD"],
-            host=os.environ["PGHOST"],
-            port=os.environ["PGPORT"],
-            database=os.environ["PGDATABASE"],
-        )
+        url = f"postgresql://{os.environ['PGUSER']}:{os.environ['PGPASSWORD']}@{os.environ['PGHOST']}:{os.environ['PGPORT']}/{os.environ['PGDATABASE']}"
         return create_engine(url)

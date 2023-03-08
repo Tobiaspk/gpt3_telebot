@@ -14,7 +14,7 @@ Find more docs on [ReadTheDocs](https://gpt3-telebot.readthedocs.io/en/latest/)
 
 Done. The bot should be available in a minute.
 
-*Note: The database is not persistent with this solution.*
+**Host DB**: In order to persist the database, host a postgresql(!) database in the same project. The script automatically retrieves the connection credentials and will automatically use the railway postgres database.
 
 ## Locally
 

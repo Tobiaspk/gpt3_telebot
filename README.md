@@ -14,7 +14,7 @@ Find more docs on [ReadTheDocs](https://gpt3-telebot.readthedocs.io/en/latest/)
 
 Done. The bot should be available in a minute.
 
-*Note: The database is not persistent with this solution.*
+**Host DB**: In order to persist the database, host a postgresql(!) database in the same project. The script automatically retrieves the connection credentials and will automatically use the railway postgres database.
 
 ## Locally
 
@@ -30,17 +30,17 @@ Set the `.keys.yml`. Done, you're set.
 
 ## Topics
 
-The command `/conv_prompt` allows you to directly jump into a topic. For example, if you have some questions about the terminal, you can simply send the following message to the bot:
+The command `/conv` allows you to directly jump into a topic. For example, if you have some questions about the terminal, you can simply send the following message to the bot:
 
 ```
-/conv_prompt terminal
+/conv terminal
 ```
 
 The bot will then start a conversation about the terminal, no need to set the context. You can end the conversation by sending the `/conv_end` command.
 
 ## Conversations
 
-Added a conversation function that remembers the context of previous messages. Start a conversation with /conv_start and begin typing. At the end, use /conv_end. Calling /conv_start during an active conversation will start a new conversation.
+Added a conversation function that remembers the context of previous messages. Start a conversation with /conv_start and begin typing. At the end, use /end. Calling /conv_start during an active conversation will start a new conversation.
 
 Easy example to test conversation:
 
@@ -73,17 +73,3 @@ You'll need the following keys
 * BotFather API key
 
 Register your keys using the `scripts/register_keys` script. 
-
-## Start server
-
-This will start polling messages.
-
-```start```
-
-## Get some history
-
-```
-bot size
-bot show --n 1
-```
-

@@ -10,6 +10,7 @@ from sqlalchemy.orm import sessionmaker
 import telebot
 
 import utils
+import connect_db as db
 import datamodel as dm
 import datamodel_functions as df
 import gpt_functions as gf
@@ -53,7 +54,7 @@ if DEV:
     dm.Base.metadata.drop_all(engine)
     dm.Base.metadata.create_all(engine)
 else:
-    engine = create_engine('sqlite:///db/chat.db')
+    engine = db.get_engine()
     dm.Base.metadata.create_all(engine)
 
 Session = sessionmaker(bind=engine)
@@ -89,7 +90,7 @@ def conversation_start(message):
     if len(message.text.split(" ")) > 1:
         echo_message(message)
 
-@bot.message_handler(commands=["conv_prompt"])
+@bot.message_handler(commands=["conv"])
 def conversation_start(message):
     logging.debug("TELEBOT: Starting conversation")
     user = check_user(message)
@@ -108,7 +109,7 @@ def conversation_start(message):
     conversation = df.start_conversation(session, user=user, prompt=prompt, query=query)
     bot.reply_to(message, f"New conversation about {prompt} started.")
 
-@bot.message_handler(commands=["conv_end"])
+@bot.message_handler(commands=["end"])
 def conversation_end(message):
     logging.debug("TELEBOT: Ending conversation")
     user = check_user(message)

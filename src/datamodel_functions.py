@@ -29,14 +29,14 @@ def end_conversation(session, user):
     param user: User object
     """
     logging.debug("DM FUNCTIONS: Ending conversation for user %s", user.id)
-    user.current_conversation_id = -1
+    user.current_conversation_id = None
     session.commit()
     return user
 
 def get_conversation(session, user, new_message, message_prefix="Q: ", response_prefix="A: "):
     logging.debug("DM FUNCTIONS: Getting conversation for user %s", user.id)
     conversation_id = user.current_conversation_id
-    if conversation_id == -1:
+    if conversation_id == None:
         return ""
 
     conv = session.query(Conversation).filter_by(id=conversation_id).first()

@@ -7,3 +7,4 @@ PyYAML==6.0
 SQLAlchemy==1.4.46
 myst-parser==0.18.1
 sphinx-rtd-theme==1.2.0
+psycopg2-binary==2.9.5
